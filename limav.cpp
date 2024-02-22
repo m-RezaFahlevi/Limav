@@ -26,3 +26,26 @@ anum::Vector operator *(anum::Matrix mat, anum::Vector vec) {
 	anum::Vector v (cpp_vec);
 	return v;
 }
+
+anum::Matrix t(anum::Matrix A) {
+	const unsigned int a_row = A.row();
+	const unsigned int a_col = A.col();
+	std::vector<double> cpp_vec;
+	for (int i = 0; i < a_col; i++) {
+		for (int j = 0; j < a_row; j++) {
+			cpp_vec.push_back(A.accs(j, i));
+		}
+	}
+	anum::Matrix A_t (cpp_vec, a_col, a_row);
+	return A_t;
+}
+
+anum::Matrix t(anum::Vector vec) {
+	const unsigned int a_col = vec.get_dim();
+	std::vector<double> cpp_vec;
+	for (int i = 0; i < a_col; i++) {
+		cpp_vec.push_back(vec.accs(i));
+	}
+	anum::Matrix A_t (cpp_vec, 1, a_col);
+	return A_t;
+}
