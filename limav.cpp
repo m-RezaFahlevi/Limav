@@ -21,6 +21,7 @@ anum::Vector operator *(anum::Matrix mat, anum::Vector vec) {
 		}
 	} catch (const std::domain_error &doerr) {
 		std::cerr << "ERROR: " << doerr.what();
+		std::exit(EXIT_FAILURE);
 	}
 	anum::Vector v (cpp_vec);
 	return v;
