@@ -23,14 +23,18 @@ anum::Matrix::Matrix(std::vector<double> vec, unsigned int m_row, unsigned int n
 		std::cerr << doerr.what() << '\n';
 		std::cerr << "Length of the elements = " << vec.size() << '\n';
 		std::cerr << "Size of the matrix (mrow * ncol) = " << this->mrow << "x" << this->ncol << " = " << DIM << '\n';
-		if (vec.size() < DIM) {
-			std::cerr << "The rest of the elements of the matrix are assigned by 0.0\n";
-			const unsigned int remainder = DIM - vec.size();
+		const unsigned int remainder = DIM - vec.size();
+		if (vec.size() == 0) {
+			std::cerr << this->mrow << "x" << this->ncol << " null matrix is constructed\n";
 			for (int idx = 0; idx < remainder; idx++) {
 				this->matel.push_back(0.0);
 			}
-		}
-		if (vec.size() > DIM) {
+		} else if (vec.size() < DIM) {
+			std::cerr << "The rest of the elements of the matrix are assigned by 0.0\n";
+			for (int idx = 0; idx < remainder; idx++) {
+				this->matel.push_back(0.0);
+			}
+		} else {
 			std::cerr << "The rest of the elements are ignored\n";
 		}
 	} catch (const std::exception &e) {
